@@ -2,13 +2,13 @@
 var sql = require('./db.js');
 
 //Task object constructor
-var Task = function(task){
-    this.task = task.task;
-    this.status = task.status;
+var Product = function(prod){
+    this.title = prod.title;
+    this.body = prod.body;
     this.created_at = new Date();
 };
-Task.createTask = function createUser(newTask, result) {    
-        sql.query("INSERT INTO tasks set ?", newTask, function (err, res) {
+Product.createProduct = function createUser(newProduct, result) {    
+        sql.query("INSERT INTO products set ?", newProduct, function (err, res) {
                 
                 if(err) {
                     console.log("error: ", err);
@@ -20,8 +20,8 @@ Task.createTask = function createUser(newTask, result) {
                 }
             });           
 };
-Task.getTaskById = function createUser(taskId, result) {
-        sql.query("Select task from tasks where id = ? ", taskId, function (err, res) {             
+Product.getProductById = function createUser(productId, result) {
+        sql.query("Select title, body, id from products where id = ? ", productId, function (err, res) {             
                 if(err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -32,22 +32,22 @@ Task.getTaskById = function createUser(taskId, result) {
                 }
             });   
 };
-Task.getAllTask = function getAllTask(result) {
-        sql.query("Select * from tasks", function (err, res) {
+Product.getAllProduct = function getAllProduct(result) {
+        sql.query("Select * from products", function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);  
+                  console.log('products : ', res);  
 
                  result(null, res);
                 }
             });   
 };
-Task.updateById = function(id, task, result){
-  sql.query("UPDATE tasks SET task = ? WHERE id = ?", [task.task, id], function (err, res) {
+Product.updateById = function(id, prod, result){
+  sql.query("UPDATE products SET title = ? , body = ? WHERE id = ?", [prod.title,prod.body, id], function (err, res) {
           if(err) {
               console.log("error: ", err);
                 result(null, err);
@@ -57,8 +57,8 @@ Task.updateById = function(id, task, result){
                 }
             }); 
 };
-Task.remove = function(id, result){
-     sql.query("DELETE FROM tasks WHERE id = ?", [id], function (err, res) {
+Product.remove = function(id, result){
+     sql.query("DELETE FROM products WHERE id = ?", [id], function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);
@@ -71,4 +71,4 @@ Task.remove = function(id, result){
             }); 
 };
 
-module.exports= Task;
+module.exports= Product;

@@ -4,10 +4,10 @@ var mysql = require('mysql');
 
 //local mysql db connection
 var connection = mysql.createConnection({
-    host     : '35.184.149.253',
-    user     : 'root',
-    password : '',
-    database : 'csdepotdb'
+    host: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`,
+    user: process.env.SQL_USER,
+    password: process.env.SQL_PASSWORD,
+    database: process.env.SQL_DATABASE
 });
 
 connection.connect(function(err) {

@@ -1,65 +1,63 @@
 'use strict';
 
-var Task = require('../model/appModel.js');
+var Product = require('../model/appModel.js');
 
-exports.list_all_tasks = function(req, res) {
-  Task.getAllTask(function(err, task) {
+exports.list_all_products = function(req, res) {
+  Product.getAllProduct(function(err, prod) {
 
     console.log('controller')
     if (err)
       res.send(err);
-      console.log('res', task);
-    res.send(task);
+      console.log('res', prod);
+    res.send(prod);
   });
 };
 
 
 
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
+exports.create_a_product = function(req, res) {
+  var new_product = new Product(req.body);
 
   //handles null error 
-   if(!new_task.task || !new_task.status){
+   if(!new_product.title || !new_product.body){
 
-            res.status(400).send({ error:true, message: 'Please provide task/status' });
+            res.status(400).send({ error:true, message: 'Please provide title/body' });
 
         }
 else{
   
-  Task.createTask(new_task, function(err, task) {
+  Product.createProduct(new_product, function(err, prod) {
     
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(prod);
   });
 }
 };
 
 
-exports.read_a_task = function(req, res) {
-  Task.getTaskById(req.params.taskId, function(err, task) {
+exports.read_a_product = function(req, res) {
+  Product.getProductById(req.params.productId, function(err, prod) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(prod);
   });
 };
 
 
-exports.update_a_task = function(req, res) {
-  Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
+exports.update_a_product = function(req, res) {
+  Product.updateById(req.params.productId, new Product(req.body), function(err, prod) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(prod);
   });
 };
 
 
-exports.delete_a_task = function(req, res) {
-
-
-  Task.remove( req.params.taskId, function(err, task) {
+exports.delete_a_product = function(req, res) {
+  Product.remove( req.params.productId, function(err, prod) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'Product successfully deleted' });
   });
 };

@@ -7,13 +7,14 @@ const express = require('express'),
 const mysql = require('mysql');
 // connection configurations
 const mc = mysql.createConnection({
-    host: '35.184.149.253',
-    user: 'root',
-    password: '',
-    database: 'mydb'
+    host: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`,
+    user: process.env.SQL_USER,
+    password: process.env.SQL_PASSWORD,
+    database: process.env.SQL_DATABASE
 });
  
 // connect to database
+
 mc.connect();
 
 app.listen(port);
