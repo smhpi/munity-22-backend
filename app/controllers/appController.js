@@ -1,3 +1,4 @@
+// Passing json to routes
 'use strict';
 
 var Product = require('../model/appModel.js');
@@ -34,6 +35,7 @@ else{
   });
 }
 };
+
 
 
 exports.read_a_product = function(req, res) {
