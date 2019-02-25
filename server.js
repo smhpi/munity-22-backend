@@ -28,11 +28,11 @@ app.post('/product/bestbuy', function(req, res) {
   var jsondata = req.body;
   var values = [];
   
-  for(var i=0; i< jsondata.length; i++)
+  for(var i=0; i< jsondata.length; i++){
     values.push([jsondata[i].product_title,jsondata[i].shop_sku,jsondata[i].quantity ]);
-  
+  }
   //Bulk insert using nested array [ [a,b],[c,d] ] will be flattened to (a,b),(c,d)
-  connection.query('INSERT INTO bestbuy (title, sku, quantity) VALUES ?', [values], function(err,result) {
+  mc.query('INSERT INTO bestbuy (title, sku, quantity) VALUES ?', [values], function(err,result) {
     if(err) {
        res.send('Error');
     }
