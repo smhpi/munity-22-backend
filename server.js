@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.post('/product/bestbuy', function(req, res) {
 
   var jsondata = req.body;
+  console.log(jsondata);
   var values = [];
   
   for(var i=0; i< jsondata.length; i++){

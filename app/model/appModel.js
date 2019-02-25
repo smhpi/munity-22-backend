@@ -7,6 +7,9 @@ var Product = function (prod) {
     this.body = prod.body;
     this.created_at = new Date();
 };
+
+
+
 Product.createProduct = function createUser(newProduct, result) {
     sql.query("INSERT INTO products set ?", newProduct, function (err, res) {
 
