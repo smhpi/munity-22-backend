@@ -22,7 +22,7 @@ console.log('API server started on Port: ' + port);
 app.use('/',express.static('front'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+/*
 app.post('/product/bestbuy', function(req, res) {
 
   var jsondata = req.body;
@@ -42,6 +42,6 @@ app.post('/product/bestbuy', function(req, res) {
     }
   });
   });
-  
+  */
 var routes = require('./app/routes/approutes'); //importing route
 routes(app); //register the route
