@@ -1,5 +1,5 @@
 "user strict";
-//require("custom-env").env();
+require("custom-env").env();
 const mysql = require("mysql");
 
 /*
@@ -13,9 +13,9 @@ var connection = mysql.createConnection({
 */
 // google cloud connection
 var connection = mysql.createConnection({
-  user: "userapp",
-  password: "Dooste,2004",
-  database: "csdepotdb",
+  user: process.env.SQL_USER,
+  password: process.env.SQL_PASSWORD,
+  database: process.env.SQL_DATABASE,
   socketPath: "/cloudsql/protean-impact-232500:us-central1:mydb"
 });
 
